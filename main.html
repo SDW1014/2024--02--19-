@@ -15,14 +15,15 @@
         var columnDefs = [
             { headerName: "ID", field: "id" },
             { headerName: "Language", field: "name" },
-            { headerName: "Age", field: "age" }
+            { headerName: "Age", field: "age" },
+            { headerName: "cm", field: "cm" }
         ];
 
         // 행 데이터
         var rowData = [
-            { id: 1, name: "snake", age: 10000000000000000 },
-            { id: 2, name: "이순신", age: 45 },
-            { id: 3, name: "Someone", age: 29 }
+            { id: 1, name: "snake", age: 10000000000000000, cm:10000000000000 },
+            { id: 2, name: "이순신", age: 45, cm:10000000000000  },
+            { id: 3, name: "Someone", age: 29 , cm:10000000000000 }
         ];
 
         // 그리드 옵션 설정
@@ -44,6 +45,25 @@
                     if (params.column.getColId() === 'age') {
                         // 숫자 데이터 앞에 탭 문자를 추가
                         return "\t" + params.value;
+                    }
+                    if (params.column.getColId() === 'cm') {
+                        // 숫자 데이터 앞에 탭 문자를 추가
+                        return "\'" + params.value;
+                    }
+                    return params.value;
+                }
+            });
+        }
+        function exportGridXlsxVer() {
+            gridOptions.api.exportDataAsExcel({
+                processCellCallback: function(params) {
+                    if (params.column.getColId() === 'age') {
+                        // 숫자 데이터 앞에 탭 문자를 추가
+                        return "\t" + params.value;
+                    }
+                    if (params.column.getColId() === 'cm') {
+                        // 숫자 데이터 앞에 탭 문자를 추가
+                        return "\'" + params.value;
                     }
                     return params.value;
                 }
